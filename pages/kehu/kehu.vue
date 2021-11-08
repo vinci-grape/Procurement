@@ -14,11 +14,11 @@
 				</block>
 			</view>
 		</scroll-view>
-		<block v-for="(item,index) of kehu" >
+		<block v-for="(item,index) of user" >
 			<view class="list" @click="jump_to_detail(item.id)">
 				<view class="list_l"><img :src="item.pic"></img></view>
 				<view class="list_r">
-					<view class="list_r_01">{{item.name}} <span class="hui">管理员</span></view>
+					<view class="list_r_01">{{item.name}}<span class="hui">{{item.sign}}</span></view>
 					<view class="list_r_02">{{item.tell}}</view>
 				</view>
 			</view>
