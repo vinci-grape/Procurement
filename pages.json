@@ -1,0 +1,232 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+		    "path" : "pages/index/index",
+		    "style" : {}
+		} 
+	    ,{
+            "path" : "pages/login/login",
+            "style" : {}
+        }
+		,
+        {
+            "path" : "pages/notice/notice",
+            "style" : {}
+        }
+       ,{
+		    "path" : "pages/kedetail/kedetail",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/kehu/kehu",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/couponxuan/couponxuan",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/couponlist/couponlist",
+		    "style" : {}
+		},
+		{
+            "path" : "pages/edit/product/product",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/edit/shop/shop",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/edit/shop_login/shop_login",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/agent/agent",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/fenxiao/fenxiao",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/tongji/tongji",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/mingxi/mingxi",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/kucun/kucun",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/fenxiao/tixian/tixian",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/edit/yanzheng/yanzheng",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order/order",
+            "style" : {}
+        },{
+            "path" : "pages/order/detail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/fenxiao/success/success",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/fenxiao/bankcard/bankcard",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/fenxiao/addcard/addcard",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/edit/product/addgroup/addgroup",
+            "style" : {}
+        }
+        ,
+		{
+            "path" : "pages/edit/pro_manage/pro_manage",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order/detail/detail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/edit/yunfei/yunfei",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/edit/yfmoban/yfmoban",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/edit/yfset/yfset",
+            "style" : {}
+        }
+        
+        ,{
+            "path" : "pages/user/reseller/reseller",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/spread/spread",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/cash/cash",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/record/record",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/sort/sort",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/guide/guide",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/shop/shop",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/certification/one/one",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/certification/two/two",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/certification/three/three",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/templace/templace",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/templace/yunfei/yunfei",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/choose/choose",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/evaluate/evaluate",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/poster/poster",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/evaluate/reply/reply",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/poster/create/create",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order/record/record",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order/send/send",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/kehu/user_manage/user_manage",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/couponlist/coupon/coupon",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/couponlist/couponvip/couponvip",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#C0C4CC",
+		"selectedColor": "#fa436a",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",		
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tab-home.png",
+				"selectedIconPath": "static/tab-home-current.png",
+				"text": "后台"
+			},
+			{
+				"pagePath": "pages/user/reseller/reseller",
+				"iconPath": "static/tab-my.png",
+				"selectedIconPath": "static/tab-my-current.png",
+				"text": "分销部分"
+			}
+		]
+	}
+}

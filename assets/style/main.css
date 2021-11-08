@@ -1,0 +1,31 @@
+html,body {
+	width: 700px;
+	margin: auto; 
+	font-size:14px;
+}
+	.main700{
+		position: absolute;		
+	width: 700px;
+	}
+    .H10{height: 10px;}
+    .H15{height: 15px;}
+    .H50{height: 50px;}
+    .white{background: #fff;}
+    .van-nav-bar__text{
+		color:#555;
+	}	
+	.van-nav-bar .van-icon{
+		color:#555;
+	}
+	
+	
+@media (max-width: 700px) {
+	html,body {
+		width: 100%; 
+	}
+	.main700{
+		position: absolute;		
+	width: 100%;
+	}
+}
+
