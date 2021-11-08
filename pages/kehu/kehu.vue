@@ -18,7 +18,7 @@
 			<view class="list" @click="jump_to_detail(item.id)">
 				<view class="list_l"><img :src="item.pic"></img></view>
 				<view class="list_r">
-					<view class="list_r_01">{{item.name}} <span class="hui">会员</span></view>
+					<view class="list_r_01">{{item.name}} <span class="hui">管理员</span></view>
 					<view class="list_r_02">{{item.tell}}</view>
 				</view>
 			</view>
@@ -38,14 +38,14 @@
 			return {
 				list: ['a', 'b', 'c', 'a', 'b', 'c'],
 				c_index: 0,
-				kehu: ''
+				user: ''
 			};
 		},
 		components: {
 			uniIcon
 		},
 		onLoad() {  
-			this.kehu=this.$api.json.kehu
+			this.user=this.$api.json.user
 			this.list=this.$api.json.kh_category
 		},
 		methods: {

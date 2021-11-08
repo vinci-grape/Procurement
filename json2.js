@@ -47,18 +47,18 @@ const   category=[{"category_id":2,"category_name":"美容美体","short_name":"
 	{"category_id":3,"category_name":"休闲娱乐","short_name":"休闲娱乐","pid":0,"level":1,"is_visible":1,"sort":6,"category_pic":"67",
 "imgs":require('@/imgs/cate4.jpg')}]
 
-const   yunfei=[{"num":3,"mess":"未有商品使用"},{"num":5,"mess":"未有商品使用"},{"num":7,"mess":"未有商品使用"}]
+const yunfei=[{"num":3,"mess":"未有商品使用"},{"num":5,"mess":"未有商品使用"},{"num":7,"mess":"未有商品使用"}]
 
-const   yfmoban={"name":3,"fanwei":"未有商品使用",
+const yfmoban={"name":3,"fanwei":"未有商品使用",
 			"quyu":[{"province":'辽宁省、吉林省、黑龙江省',"shou":1,"s_price":"0.00","xu":1,"x_price":"2.00"},
 			{"province":'贵州省、云南省、广西省',"shou":1,"s_price":"0.00","xu":1,"x_price":"2.00"},
 			{"province":'四川省、湖南省、宁夏省',"shou":1,"s_price":"0.00","xu":1,"x_price":"2.00"}]
 		}
 
-const   kehu=[{name: 'mingzi',id: 1,pic: require('@/imgs/8.jpg'),tell: '123456789'},
+const user=[{name: 'mingzi',id: 1,pic: require('@/imgs/8.jpg'),tell: '123456789'},
 					{name: '名字',id: 2,pic: require('@/imgs/3.jpg'),tell: '123789'}]
 
-const   kh_category=[{"category_id":2,"category_name":"管理员"},{"category_id":3,"category_name":"销售员"},
+const kh_category=[{"category_id":2,"category_name":"管理员"},{"category_id":3,"category_name":"销售员"},
 		{"category_id":4,"category_name":"采购员"},{"category_id":5,"category_name":"仓管人员"},{"category_id":6,"category_name":"转运人员"},{"category_id":7,"category_name":"财务员"}]
 
 export default {
