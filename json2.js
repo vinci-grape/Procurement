@@ -58,8 +58,8 @@ const   yfmoban={"name":3,"fanwei":"未有商品使用",
 const   kehu=[{name: 'mingzi',id: 1,pic: require('@/imgs/8.jpg'),tell: '123456789'},
 					{name: '名字',id: 2,pic: require('@/imgs/3.jpg'),tell: '123789'}]
 
-const   kh_category=[{"category_id":2,"category_name":"白银用户"},{"category_id":3,"category_name":"黄金用户"},
-		{"category_id":4,"category_name":"白金用户"},{"category_id":5,"category_name":"钻石用户"}]
+const   kh_category=[{"category_id":2,"category_name":"管理员"},{"category_id":3,"category_name":"销售员"},
+		{"category_id":4,"category_name":"采购员"},{"category_id":5,"category_name":"仓管人员"},{"category_id":6,"category_name":"转运人员"},{"category_id":7,"category_name":"财务员"}]
 
 export default {
 	count_order,
