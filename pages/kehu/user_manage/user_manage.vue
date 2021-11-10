@@ -13,16 +13,10 @@
 			<view class="title">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</view>
 			<input placeholder="请输入密码(8-16位)"  v-model="coupon_form.reduce"></input>
 		</view>
-		<view class="cu-form-group">
-			<view class="title">身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份：</view>
-			<picker-view @change="bindPickerChange" :value="index" :range="sign">
-				<view>{{sign[index]}}</view>
-			</picker-view>
-		</view>
 		<view class="cu-form-group" @click="useOutClickSide">
 			<view class="title">身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份：</view>
-	        <easy-select ref="easySelect" size="medium" :value="selecValue" @selectOne="selectOne"></easy-select>
-	    </view>
+	        <easy-select ref="easySelect" size="medium" :value="selectValue" @selectOne="selectOne"></easy-select>
+	    </view>	
 		<view class="H50"></view>
 		<view class="p_btn">
 			<view class=" flex flex-direction">
@@ -47,11 +41,21 @@
 				format: true
 			})
 			return {
+				selectValue: '管理员',
 				sign: ['管理员', '销售员', '采购员', '仓管人员', '转运人员', '财务员'],
+				index: '0',
+				status: [{
+						value: '0',
+						name: '一次'
+					},
+					{
+						value: '1',
+						name: '无限制'
+					},
+				],
 				current: 0,
-				index: 0,
 				coupon_form: {
-					sign: '',
+					status: '',
 					full: '',
 					reduce: '',
 					name: '',
@@ -71,7 +75,6 @@
 				time: '12:01',
 				threshold: 1,
 				sku: [],
-				temp: [],
 				show_cate_list: false,
 				show_mail_list: false,
 				category_name: '固定时间',
@@ -138,6 +141,12 @@
 			uni.removeStorageSync('pro_id_list')
 		},
 		methods: {
+			selectOne(options) {
+				this.selectValue = options.label
+			},
+			useOutClickSide() {
+				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions()
+			},
 			DateChange(e) {
 				this.date = e.detail.value
 			},
@@ -150,10 +159,10 @@
 			},
 			//-------------------------------------------------------------选择使用次数
 			radioChange: function(evt) {
-				for (let i = 0; i < this.sign.length; i++) {
-					if (this.sign[i].value === evt.target.value) {
+				for (let i = 0; i < this.status.length; i++) {
+					if (this.status[i].value === evt.target.value) {
 						this.current = i; 
-						this.coupon_form.sign = this.sign[i].value
+						this.coupon_form.status = this.status[i].value
 						break;
 					}
 				}
@@ -225,7 +234,7 @@
 						full: this.coupon_form.full,
 						name: this.coupon_form.name,
 						reduce: this.coupon_form.reduce,
-						sign: this.coupon_form.sign,
+						status: this.coupon_form.status,
 						goods_ids: this.coupon_form.goods_ids,
 						day: this.coupon_form.day
 					}).then(res => {
@@ -240,7 +249,7 @@
 						full: this.coupon_form.full,
 						name: this.coupon_form.name,
 						reduce: this.coupon_form.reduce,
-						sign: this.coupon_form.sign,
+						status: this.coupon_form.status,
 						goods_ids: this.coupon_form.goods_ids,
 						start_time: this.coupon_form.start_time,
 						end_time: this.coupon_form.end_time,
@@ -288,11 +297,7 @@
 						})
 					}, 1500)
 				})
-			},
-			bindPickerChange: function(e) {
-				console.log('picker发送选择改变，携带值为', e.target.value)
-				this.index = e.target.value
-			},
+			}
 		}
 	}
 </script>
@@ -301,225 +306,20 @@
 	page {
 		background-color: #F7F6FB;
 	}
-	.danxuan{width: 100px;
-		span{padding:2px 0 0 10px;}
+	
+	.p_btn {
+		background: #F7F6FB;
+		padding: 0 10px 0px;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		z-index: 9999;
 	}
-	.pic {
-		padding: 20upx 10upx;
-	}
-
-	.input-view {
-		font-size: 28upx;
-	}
-
-	.leixin {
-		// height: 300px;
-		width: 50vw;
-		overflow: hidden;
-		overflow-x: hidden;
-		overflow-y: scroll;
-	}
-
-	.xuan {
-		padding-bottom: 10px;
-		padding-top: 10px;
-	}
-
-	.close-view {
-		text-align: center;
-		line-height: 14px;
-		height: 16px;
-		width: 16px;
-		border-radius: 50%;
-		background: #FF5053;
-		color: #FFFFFF;
-		position: absolute;
-		top: -6px;
-		right: -4px;
-		font-size: 12px;
-	}
-
-	.product {
-		background-color: #F7F6FB;
-		height: 100%;
-
-		.head {
-			position: relative;
-			padding: 0 5px;
-		}
-
-		.head img {
-			width: 100%;
-			height: 150px;
-		}
-
-		.btn {
-			position: absolute;
-			top: 10px;
-			right: 5px;
-		}
-
-		.btn button {
-			font-size: 10px;
-			color: red;
-			border: none;
-			border-radius: 20px;
-			background-color: #CBCBCB;
-			padding: 5px;
-		}
-
-		.top {
-			box-shadow: 0 0 8px 5px #EDEDED;
-			height: 1px;
-			background-color: #EDEDED;
-		}
-
-		.pro_tit {
-			padding: 15px 10px 10px;
-			border-bottom: 1px solid #EDEDED;
-		}
-
-		.BH {
-			height: 5px;
-			background-color: #F2F2F2;
-		}
-
-		.biao {
-			background-color: #fff;
-			margin: 10px;
-			border-radius: 5px;
-			border: 1px solid #EAEAEA;
-		}
-
-		.biao span {
-			color: red;
-			padding-right: 5px;
-		}
-
-		.biao textarea {
-			width: 100%;
-			border-bottom: 1px solid #EDEDED;
-			padding: 10px;
-			height: 100px;
-		}
-
-		.biao_01 {
-			padding: 10px 10px 10px;
-			border-bottom: 1px solid #EDEDED;
-			display: flex;
-		}
-
-		.biao_01_l {
-			padding-top: 7px;
-			flex-shrink: 0;
-		}
-
-		.biao_01_1 {
-			padding-top: 5px;
-		}
-
-		.biao_01_r {
-			flex-grow: 1;
-		}
-
-		.biao_01_r text {
-			padding-right: 10px;
-		}
-
-		.biao_02_r select {
-			padding: 0 10px;
-			line-height: 25px;
-			min-width: 80px;
-			text-align: center;
-		}
-
-		.biao_01_m {
-			border-right: 1px solid #EDEDED;
-		}
-
-		.biao_02 {
-			padding: 13px 10px 10px;
-			border-bottom: 1px solid #EDEDED;
-			display: flex;
-			justify-content: space-between;
-		}
-
-		.biao_03 {
-			padding: 13px 10px 10px;
-			border-bottom: 1px solid #EDEDED;
-			display: flex;
-		}
-
-		.biao_04 {
-			display: flex;
-			padding: 10px 10px 10px;
-			border-bottom: 1px solid #EDEDED;
-		}
-
-		.biao_04_l {
-			display: flex;
-			width: 50%;
-			line-height: 30px;
-			padding-right: 10px;
-		}
-
-		.biao_04_l_i {
-			flex-shrink: 1;
-		}
-
-		.biao_04_l_1 {
-			flex-shrink: 0;
-		}
-
-		.biao_05 {
-			padding: 10px 10px 0;
-		}
-
-		.jgkc {
-			padding: 15px 10px;
-			border-bottom: 1px solid #EDEDED;
-		}
-
-		.p_btn {
-			background: #F7F6FB;
-			padding: 0 10px 0px;
-			position: fixed;
-			bottom: 0;
-			width: 100%;
-			z-index: 9999;
-		}
-
-		.pro_btn {
-			background-color: #E5E5E5;
-			padding: 10px;
-			text-align: center;
-			border-radius: 20px;
-			background-color: #DF421D;
-			color: #fff;
-			width: 94%;
-		}
-
-		.guige {
-			border: 1px solid #EDEDED;
-			margin: 10px 20px 5px 10px;
-			position: relative;
-		}
-
-		.stop {
-			position: absolute;
-			right: -15px;
-			top: 60px;
-		}
-
-		.stop img {
-			width: 30px;
-			height: 30px;
-		}
-
-		.uni-input-input,
-		.uni-input {
-			height: 30px;
-			line-height: 30px;
-		}
-	}
+	// .u-icon {
+	// 	padding: 0 150rpx;
+	// }
+	.u-input {
+		font-size: 15px;
+		background: #FFFFFF;
+	} 
 </style>

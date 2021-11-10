@@ -151,7 +151,7 @@
 		}
 
 		.p_btn {
-			background: #F7F6FB;
+			background: #FFFFFF;
 			padding: 0 10px 0px;
 			position: fixed;
 			bottom: 0;

@@ -1,8 +1,8 @@
 <template>
 	<view class="easy-select" @click.stop="trigger" :style="[easySelectSize]">
-		<input type="text" v-model="value" :placeholder="placeholder" disabled clearable>
+		<input class="u-input" type="text" v-model="value" :placeholder="placeholder" disabled clearable>
 		<view class="easy-select-suffix" :style="{border: '1px solid rgba（0,0,0,0)'}" :class="[showSuffix]">
-			<view class="easy-select-down-tag">^</view>
+			<uni-icons type="arrowdown" size="20" class="u-icon"></uni-icons>
 		</view>
 		<view class="easy-select-options" v-if="showOptions" :style="{'min-width': boundingClientRect.width + 'px', top: optionsGroupTop, margin: optionsGroupMargin}">
 			<view class="easy-select-options-item" v-for="item in options" :key="item.value" @click.stop="select(item)" :class="{active: currentSelect.label === item.label}">
@@ -27,7 +27,7 @@
 	const STORAGE_KEY = '_easyWindowHeight'
 	const SIZE = {
 		'medium': {
-			width: '240px',
+			width: '300px',
 			height: '40px'
 		},
 		'small': {
@@ -53,7 +53,7 @@
 			},
 			value: {
 				type: String,
-				default: '双皮奶'
+				default: '管理员'
 			},
 			size: {
 				type: String,
@@ -64,19 +64,22 @@
 				default () {
 					return [{
 						value: '选项1',
-						label: '黄金糕'
+						label: '管理员'
 					}, {
 						value: '选项2',
-						label: '双皮奶'
+						label: '销售员'
 					}, {
 						value: '选项3',
-						label: '蚵仔煎'
+						label: '采购员'
 					}, {
 						value: '选项4',
-						label: '龙须面'
+						label: '仓管人员'
 					}, {
 						value: '选项5',
-						label: '北京烤鸭'
+						label: '转运人员'
+					}, {
+						value: '选项6',
+						label: '财务员'
 					}]
 				}
 			}
@@ -181,7 +184,7 @@
 		height: 100% !important;
 		min-height: 100% !important;
 	}
-
+	
 	.easy-select .easy-select-suffix {
 		position: absolute;
 		box-sizing: border-box;
@@ -196,16 +199,17 @@
 	}
 
 	.easy-select .showOptions {
-		transform: rotate(0) !important;
+		transform: rotate(180deg) !important;
 	}
 
 	.easy-select .no-showOptions {
-		transform: rotate(180deg) !important;
+		transform: rotate(0) !important;
 	}
 
 	.easy-select .easy-select-options {
 		position: absolute;
-		padding: 6px 0;
+		padding: 0px 0px;
+		left: -20rpx;
 		margin-top: 10px;
 		border: 1px solid #e4e7ed;
 		border-radius: 4px;
