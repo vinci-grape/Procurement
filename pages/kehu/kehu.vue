@@ -1,25 +1,22 @@
 <template>
-	<view class="kehu">
+	<view class="user_list">
 		<view class="search">
-			<view class='sear_01'>
-				<uni-icon type="search" size="20" color="#A5A5A5"></uni-icon><span>搜索</span>
-			</view>
-			<view class="sear_02"><button class="cu-btn round bg-grey sm">搜索</button></view>
+			<uni-easyinput suffixIcon="search" v-model="search_value" placeholder="请输入内容" @iconClick="onClick" color="#A5A5A5"></uni-easyinput>
 		</view>
 		<scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
 			<view class='tab'>
-				<view :class="c_index==0?'xz':'bb' " @click="num(0)">全部</view>
-				<block v-for="(item,index) of list">
-					<view :class="c_index==(index+1)?'xz':'bb' " @click="num(index+1)">{{item.category_name}}</view>
+				<view :class="c_index==0?'tab_focus':'tab_normal'" @click="num(0)">全部</view>
+				<block v-for="(item, index) of sign_list">
+					<view :class="c_index==(index+1)?'tab_focus':'tab_normal'" @click="num(index+1)">{{item.category_name}}</view>
 				</block>
 			</view>
 		</scroll-view>
-		<block v-for="(item,index) of user" >
+		<block v-for="(item, index) of user" v-if="c_index==0||item.sign_id==c_index" >
 			<view class="list" @click="jump_to_detail(item.id)">
 				<view class="list_l"><img :src="item.pic"></img></view>
 				<view class="list_r">
 					<view class="list_r_01">{{item.name}}<span class="hui">{{item.sign}}</span></view>
-					<view class="list_r_02">{{item.tell}}</view>
+					<view class="list_r_02">{{item.username}}</view>
 				</view>
 			</view>
 		</block>
@@ -32,28 +29,26 @@
 </template>
 
 <script>
-	import uniIcon from "@/components/uni/uni-icon/uni-icon.vue"
 	export default {
 		data() {
 			return {
-				list: ['a', 'b', 'c', 'a', 'b', 'c'],
+				search_value: '',
+				sign_list: '',
 				c_index: 0,
-				user: ''
+				user: '',
+				sign: [" ", "管理员", "销售员", "采购员", "仓管人员", "转运人员", "财务员"],
 			};
-		},
-		components: {
-			uniIcon
-		},
+		},		
 		onLoad() {  
 			this.user=this.$api.json.user
-			this.list=this.$api.json.kh_category
+			this.sign_list=this.$api.json.sign_list
 		},
 		methods: {
-			jump_to_detail() {
-				uni.navigateTo({
-					url: '../kedetail/kedetail'
-				});
-			},
+			// jump_to_detail() {
+			// 	uni.navigateTo({
+			// 		url: '../kedetail/kedetail'
+			// 	});
+			// },
 			jump_user_manage() {
 				uni.navigateTo({
 					url: './user_manage/user_manage'
@@ -62,64 +57,44 @@
 			num(index) {
 				this.c_index = index
 			},
-			jump_xiang(id) {
-				uni.navigateTo({
-					url: '/pages/kedetail/kedetail?id=' + id,
-				});
-			}
+			// jump_xiang(id) {
+			// 	uni.navigateTo({
+			// 		url: '/pages/kedetail/kedetail?id=' + id,
+			// 	});
+			// }
 		}
 	}
 </script>
 
 <style lang="scss">
-	.kehu {
+	.user_list {
 		.search {
-			background: #F4F4F4;
+			background: #FFFFFF;
 			display: flex;
 			width: 100%;
 			box-sizing: border-box;
 			padding: 10px;
-
-			.sear_01 {
-				padding: 0 10px;
-				height: 30px;
-				border-radius: 5px;
-				line-height: 30px;
-				background-color: #fff;
-				width: 100%;
-
-				span {
-					padding-left: 10px;
-					color: #ADADAD;
-				}
-			}
-			.sear_02{width: 80px;padding:3px 0 0 20px;}
 		}
-
 		.tab {
 			padding: 10px 10%;
 			display: flex;
 			width: 100%;
-
-			.bb {
+			.tab_normal {
 				padding-bottom: 5px;
 				min-width: 80px;
 				text-align: center;
 			}
-
-			.xz {
+			.tab_focus {
 				border-bottom: 2px solid red;
 				padding-bottom: 5px;
 				min-width: 80px;
 				text-align: center;
 			}
 		}
-
 		.list {
 			display: flex;
 			padding: 10px;
 			border-bottom: 1px solid #EAEAEA;
-
 			.list_l {
 				padding: 0 10px 0 0;
 
@@ -129,10 +104,8 @@
 					border-radius: 5px;
 				}
 			}
-
 			.list_r {
 				line-height: 25px;
-
 				.list_r_01 {
 					.hui {
 						border: 1px solid #FF6D6D;
@@ -143,13 +116,11 @@
 						margin-left: 8px;
 					}
 				}
-
 				.list_r_02 {
 					color: #ABABAB;
 				}
 			}
 		}
-
 		.p_btn {
 			background: #FFFFFF;
 			padding: 0 10px 0px;
@@ -157,16 +128,6 @@
 			bottom: 0;
 			width: 100%;
 			z-index: 9999;
-		}
-
-		.pro_btn {
-			background-color: #E5E5E5;
-			padding: 10px;
-			text-align: center;
-			border-radius: 20px;
-			background-color: #DF421D;
-			color: #fff;
-			width: 94%;
 		}
 	}
 </style>

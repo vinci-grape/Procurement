@@ -55,11 +55,11 @@ const yfmoban={"name":3,"fanwei":"未有商品使用",
 			{"province":'四川省、湖南省、宁夏省',"shou":1,"s_price":"0.00","xu":1,"x_price":"2.00"}]
 		}
 
-const user=[{name: '殷鑫',id: 1,pic: require('@/imgs/8.jpg'),tell: '15858780802',sign: '采购员'},
-					{name: '蒋步高',id: 2,pic: require('@/imgs/3.jpg'),sign: '销售员'}]
+const user=[{name: '殷鑫', username: '15858780802',id: 1, pic: require('@/imgs/8.jpg'), password: '15858780802', sign_id: 1, sign: '管理员'},
+					{name: '蒋步高', username: '蒋步高', id: 2, pic: require('@/imgs/3.jpg'), password: '18390188785', sign_id: 2, sign: '销售员'}]
 
-const kh_category=[{"category_id":2,"category_name":"管理员"},{"category_id":3,"category_name":"销售员"},
-		{"category_id":4,"category_name":"采购员"},{"category_id":5,"category_name":"仓管人员"},{"category_id":6,"category_name":"转运人员"},{"category_id":7,"category_name":"财务员"}]
+const sign_list=[{"sign_id":1,"category_name":"管理员"},{"sign_id":2,"category_name":"销售员"},
+		{"sign_id":3,"category_name":"采购员"},{"sign_id":4,"category_name":"仓管人员"},{"sign_id":5,"category_name":"转运人员"},{"sign_id":6,"category_name":"财务员"}]
 
 export default {
 	count_order,
@@ -73,7 +73,7 @@ export default {
 	yunfei,
 	yfmoban,
 	user,
-	kh_category,
+	sign_list,
 	get_tx_log,
 	get_sale_money,
 	get_card,
