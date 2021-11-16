@@ -1,7 +1,7 @@
 <template>
 	<view class="index">
-		<view class="head">
-			 <view class="tit">{{shop.shop_name}}</view> 
+		<!-- <view class="head"> -->
+			<!-- <view class="tit">{{shop.shop_name}}</view> 
 			<view class="jiu">
 				<view class="jiu_01" @click="shao()">
 					<view><img src="../../imgs/1.png"/></view>
@@ -19,8 +19,8 @@
 					<view>财务结算</view>
 					</navigator>
 				</view>
-			</view>
-		</view>
+			</view> -->
+		<!-- </view> -->
 		<view class="more">
 			<view class='mo'>
 				<view class='mo_01'>数据交易</view>
@@ -55,8 +55,14 @@
 		</view>
 		<view class="BH"></view>
 		<view class="six">
-			<view class="jiu_01">
+			<!-- <view class="jiu_01">
 				<navigator url="/pages/edit/pro_manage/pro_manage">
+					<view><img src="../../imgs/6.png" /></view>
+					<view>商品管理</view>
+				</navigator>
+			</view> -->
+			<view class="jiu_01">
+				<navigator url="">
 					<view><img src="../../imgs/6.png" /></view>
 					<view>商品管理</view>
 				</navigator>
@@ -76,57 +82,57 @@
 			<view class="jiu_01">
 				<navigator url="/pages/user/tongji/tongji"> 
 					<view><img src="../../imgs/date.png" /></view>
-					<view>经营数据</view>
+					<view>财务数据</view>
 				</navigator>
 			</view>
-			<view class="jiu_01">
+			<!-- <view class="jiu_01">
 				<navigator url="/pages/couponlist/couponlist">
 					<view><img src="../../imgs/yhq.png" /></view>
 					<view>优惠券</view>
 				</navigator>
-			</view>
+			</view> -->
 			<view class="jiu_01 ">
 				<navigator url="/pages/kehu/kehu">
 					<view><img src="../../imgs/people.png" /></view>
 					<view>用户管理</view>
 				</navigator>
 			</view> 
-			<view class="jiu_01 ">
+			<!-- <view class="jiu_01 ">
 				<navigator url="/pages/evaluate/evaluate">
 					<view><img src="../../imgs/4.png" /></view>
 					<view>评价管理</view>
 				</navigator>
-			</view> 
-			<view class="jiu_01 ">
+			</view> -->
+		<!-- 	<view class="jiu_01 ">
 				<navigator url="/pages/poster/poster">
 					<view><img src="../../imgs/poster.png" /></view>
 					<view>海报生成</view>
 				</navigator>
-			</view> 
-			<view class="jiu_01 ">
+			</view> -->
+			<!-- <view class="jiu_01 ">
 				<navigator url="/pages/templace/templace">
 					<view><img src="../../imgs/yfmb.png" /></view>
 					<view>运费模板</view>
 				</navigator>
-			</view> 
-			<view class="jiu_01 " >
+			</view> -->
+			<!-- <view class="jiu_01 " >
 				<navigator url="/pages/certification/one/one">
 					<view><img src="../../imgs/sjrz.png" /></view>
 					<view>商家入驻</view>
 				</navigator>
-			</view> 
+			</view> -->
 		</view>
 		<view class="BH"></view>
 		<view class="more">
 			<view class='mo'>
-				<view class='mo_01'>广告直通车 
+				<view class='mo_01'>拓展版面 
 					 </view>
 				<view class='mo_02'></view>
 			</view>
 		</view>
 		<view class="list">
-			<view class="list_01" @click="jump_choose">商家选择</view>
-			<view class="list_01">来源于如花开源商城系统: www.ruhuashop.com</view>
+			<view class="list_01" @click="jump_choose"></view>
+			<view class="list_01"></view>
 		</view>
 		<view class="H50">
 			</view>
