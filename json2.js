@@ -8,7 +8,7 @@ const get_tx_log=[{"id":3,"shop_id":9,"shop_user_id":7,"card_id":4,"card_num":""
 
 const  count_order={"id":5,"shop_name":"测试","today":[{"today_num_total":0,"today_money_total":null}],"yesterday":[{"yesterday_num_total":0,"yesterday_money_total":null}],"total":[{"all_num_total":1,"all_money_total":"188.00"}]}
 
-const  order_detail={"id":1,"order_num":'123456789223',"pay_time":"2019-1-8 10:01:20","total":"999",
+const  order_detail={"id":1,"order_num":'123456789223',"pay_time":"2021-11-16 13:01:20","total":"999",
 					"address":[{
 						"name":"全文","address":"某某省某某市某某省某某市某某省某某市某某省某某市","tell":"12345678909"
 					}]}

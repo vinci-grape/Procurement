@@ -73,12 +73,12 @@
 					<view>订单管理</view>
 				</navigator>
 			</view>
-			<view class="jiu_01">
+		<!-- 	<view class="jiu_01">
 				<navigator url="/pages/edit/shop/shop">
 					<view><img src="../../imgs/5.png" /></view>
 					<view>门店编辑</view>
 				</navigator>
-			</view>
+			</view> -->
 			<view class="jiu_01">
 				<navigator url="/pages/user/tongji/tongji"> 
 					<view><img src="../../imgs/date.png" /></view>

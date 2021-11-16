@@ -10,9 +10,9 @@
 				{{item.text}}
 			</view>
 		</view>
-
+		
 		<swiper :current="tabCurrentIndex" class="swiper-box" duration="300" @change="changeTab">
-			<swiper-item class="tab-content" v-for="(tabItem,tabIndex) in navList" :key="tabIndex">
+			<swiper-item class="tab-content" v-for="(tabItem, tabIndex) in navList" :key="tabIndex">
 				<scroll-view 
 					class="list-scroll-content" 
 					scroll-y
@@ -23,7 +23,7 @@
 					
 					<!-- 订单列表 -->
 					<view 
-						v-for="(item,index) in tabItem.orderList" :key="index"
+						v-for="(item, index) in tabItem.orderList" :key="index"
 						class="order-item"
 					>
 						<view class="i-top b-b">
@@ -65,12 +65,12 @@
 						</view>
 						<view class="action-box b-t" v-if="item.state != 9">
 							<button class="action-btn" @click="cancelOrder(item)">取消订单</button>
-							<button class="action-btn recom">立即支付</button>
+							<button class="action-btn recom" v-if="item.state == 2">立即分配</button>
+							<button class="action-btn recom" v-if="item.state == 3">立即核验</button>
+							
 						</view>
 					</view>
-					 
 					<uni-load-more :status="tabItem.loadingType"></uni-load-more>
-					
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -103,13 +103,13 @@
 					},
 					{
 						state: 2,
-						text: '待收货',
+						text: '待分配',
 						loadingType: 'more',
 						orderList: []
 					},
 					{
 						state: 3,
-						text: '待评价',
+						text: '待核验',
 						loadingType: 'more',
 						orderList: []
 					},
@@ -235,7 +235,9 @@
 					case 1:
 						stateTip = '待付款'; break;
 					case 2:
-						stateTip = '待发货'; break;
+						stateTip = '待分配'; break;
+					case 3:
+						stateTip = '待核验'; break;
 					case 9:
 						stateTip = '订单已关闭'; 
 						stateTipColor = '#909399';
