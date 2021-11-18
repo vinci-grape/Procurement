@@ -1,30 +1,9 @@
 <template>
 	<view class="index">
-		<!-- <view class="head"> -->
-			<!-- <view class="tit">{{shop.shop_name}}</view> 
-			<view class="jiu">
-				<view class="jiu_01" @click="shao()">
-					<view><img src="../../imgs/1.png"/></view>
-					<view>扫码验证</view>
-				</view>
-				<view class="jiu_01">					
-					<navigator url="/pages/edit/yanzheng/yanzheng">
-						<view><img src="../../imgs/2.png" /></view>
-						<view>输码验证</view>
-					</navigator>
-				</view>
-				<view class="jiu_01 ">
-					<navigator url="/pages/user/mingxi/mingxi"> 
-					<view><img src="../../imgs/3.png" /></view>
-					<view>财务结算</view>
-					</navigator>
-				</view>
-			</view> -->
-		<!-- </view> -->
 		<view class="more">
 			<view class='mo'>
 				<view class='mo_01'>数据交易</view>
-				<navigator url="/pages/user/tongji/tongji"> 
+				<navigator url="/pages/statistics/statistics"> 
 				<view class='mo_02'>更多 <uni-icon type="arrowright" size="15" color="#D6D6D6"></uni-icon>
 				</view>
 				</navigator>
@@ -33,23 +12,23 @@
 		<view class="shuju">
 			<view class="shuju_01">
 					<view>今日订单/金额</view>
-					<view class="shuju_01_s" v-if="shop.today[0].today_money_total">{{shop.today[0].today_num_total}} / ¥{{shop.today[0].today_money_total}}</view>
+					<view class="shuju_01_s" v-if="count_order.today[0].today_money_total">{{count_order.today[0].today_num_total}} / ¥{{count_order.today[0].today_money_total}}</view>
 					<view class="shuju_01_s" v-else>0 / ¥0</view>
 			</view>
 			<view class="shuju_01 no">
 				<view>昨日订单/金额</view> 
-				<view class="shuju_01_s" v-if="shop.yesterday[0].yesterday_money_total">{{shop.yesterday[0].yesterday_num_total}} /
-				 ¥{{shop.yesterday[0].yesterday_money_total}}</view>
+				<view class="shuju_01_s" v-if="count_order.yesterday[0].yesterday_money_total">{{count_order.yesterday[0].yesterday_num_total}} /
+				 ¥{{count_order.yesterday[0].yesterday_money_total}}</view>
 				 <view class="shuju_01_s" v-else>0 / ¥0</view>
 			</view>
 			
 			<view class="shuju_01">
 				<view>总订单数</view>
-				<view class="shuju_01_s ">{{shop.total[0].all_num_total}}</view>
+				<view class="shuju_01_s ">{{count_order.total[0].all_num_total}}</view>
 			</view>
 			<view class="shuju_01 no">
 				<view>总销售金额</view>
-				<view class="shuju_01_s" v-if="shop.total[0].all_money_total">¥ {{shop.total[0].all_money_total}}</view>
+				<view class="shuju_01_s" v-if="count_order.total[0].all_money_total">¥ {{count_order.total[0].all_money_total}}</view>
 				 <view class="shuju_01_s" v-else>0 </view>
 			</view>
 		</view>
@@ -73,54 +52,18 @@
 					<view>订单管理</view>
 				</navigator>
 			</view>
-		<!-- 	<view class="jiu_01">
-				<navigator url="/pages/edit/shop/shop">
-					<view><img src="../../imgs/5.png" /></view>
-					<view>门店编辑</view>
-				</navigator>
-			</view> -->
 			<view class="jiu_01">
-				<navigator url="/pages/user/tongji/tongji"> 
+				<navigator url="/pages/statistics/statistics"> 
 					<view><img src="../../imgs/date.png" /></view>
 					<view>财务数据</view>
 				</navigator>
 			</view>
-			<!-- <view class="jiu_01">
-				<navigator url="/pages/couponlist/couponlist">
-					<view><img src="../../imgs/yhq.png" /></view>
-					<view>优惠券</view>
-				</navigator>
-			</view> -->
 			<view class="jiu_01 ">
-				<navigator url="/pages/kehu/kehu">
+				<navigator url="/pages/user/user">
 					<view><img src="../../imgs/people.png" /></view>
 					<view>用户管理</view>
 				</navigator>
 			</view> 
-			<!-- <view class="jiu_01 ">
-				<navigator url="/pages/evaluate/evaluate">
-					<view><img src="../../imgs/4.png" /></view>
-					<view>评价管理</view>
-				</navigator>
-			</view> -->
-		<!-- 	<view class="jiu_01 ">
-				<navigator url="/pages/poster/poster">
-					<view><img src="../../imgs/poster.png" /></view>
-					<view>海报生成</view>
-				</navigator>
-			</view> -->
-			<!-- <view class="jiu_01 ">
-				<navigator url="/pages/templace/templace">
-					<view><img src="../../imgs/yfmb.png" /></view>
-					<view>运费模板</view>
-				</navigator>
-			</view> -->
-			<!-- <view class="jiu_01 " >
-				<navigator url="/pages/certification/one/one">
-					<view><img src="../../imgs/sjrz.png" /></view>
-					<view>商家入驻</view>
-				</navigator>
-			</view> -->
 		</view>
 		<view class="BH"></view>
 		<view class="more">
@@ -134,58 +77,23 @@
 			<view class="list_01" @click="jump_choose"></view>
 			<view class="list_01"></view>
 		</view>
-		<view class="H50">
-			</view>
-		<!-- 弹窗 -->
-		<view v-if="tancl">
-			<Tan @close_add="tan"></Tan>
-		</view>
+		<view class="H50"></view>
 	</view>
 </template>
 
 <script>
-	import uniBadge from "@/components/uni/uni-badge/uni-badge.vue"
-	import uniIcon from "@/components/uni/uni-icon/uni-icon.vue"
-	import Tan from "@/components/qy/Tan.vue"
 	export default {
 		data() {
 			return {
-				tancl: false,
-				shop:{}
+				count_order:{}
 			}
 		},
 		components: {
-			uniIcon,
-			uniBadge,
-			Tan
 		},
 		onLoad() {  
-			this._load()
+			this.count_order=this.$api.json.count_order
 		},
 		methods: {
-			_load(){
-				this.shop=this.$api.json.count_order
-			},
-			//弹窗
-			tan() {
-				this.tancl = !this.tancl
-			},
-			//扫码
-			shao(){
-				uni.scanCode({
-					onlyFromCamera: true,
-					success: function (res) {
-						uni.navigateTo({
-							url:'pages/edit/yanzheng/yanzheng?code='+res.result
-						})
-					}
-				});
-			},
-			jump_choose(){
-				uni.navigateTo({
-					url:'/pages/choose/choose'
-				})
-			}
 		}
 	}
 </script>

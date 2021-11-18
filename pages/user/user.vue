@@ -1,121 +1,133 @@
 <template>
-	<view class="user">
-		<view class="cu-list menu" :class="[menuBorder?'sm-border':'',menuCard?                                                 'card-menu margin-top':'']">
-			<view class="cu-item arrow" >
-				<view class="content"  @click="change">
-					<text class="text-grey">修改密码</text>
+	<view class="user_list">
+		<view class="search">
+			<uni-easyinput suffixIcon="search" v-model="search_value" placeholder="请输入内容" @iconClick="onClick" color="#A5A5A5"></uni-easyinput>
+		</view>
+		<scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
+			<view class='tab'>
+				<view :class="c_index==0?'tab_focus':'tab_normal'" @click="num(0)">全部</view>
+				<block v-for="(item, index) of sign_list">
+					<view :class="c_index==(index+1)?'tab_focus':'tab_normal'" @click="num(index+1)">{{item.category_name}}</view>
+				</block>
+			</view>
+		</scroll-view>
+		<block v-for="(item, index) of user" v-if="c_index==0||item.sign_id==c_index" >
+			<view class="list" @click="jump_to_detail(item.id)">
+				<view class="list_l"><img :src="item.pic"></img></view>
+				<view class="list_r">
+					<view class="list_r_01">{{item.name}}<span class="hui">{{item.sign}}</span></view>
+					<view class="list_r_02">{{item.username}}</view>
 				</view>
 			</view>
-			<!-- #ifndef MP-WEIXIN -->
-			<view class="cu-item arrow" >
-				<view class="content">
-					<text class="text-grey">更新版本</text>
-				</view>
-			</view>
-			<!-- #endif -->
-			<view class="cu-item arrow" :class="menuArrow?'arrow':''" @click="tel('0859-1234567')">
-				<view class="content">
-					<text class="text-grey">联系电话</text>
-				</view>
-				<view class="action">
-					<text class="text-grey text-sm">0859-1234567</text>
-				</view>
-			</view>
-			<view class="cu-item" :class="menuArrow?'arrow':''">
-				<view class="content">
-					<text class="text-grey" @click="lout()">退出</text>
-				</view>
+		</block>
+		<view class="p_btn">
+			<view class="flex flex-direction" >
+				<button @click="jump_user_manage" class="cu-btn bg-red margin-tb-sm lg">新增用户</button>
 			</view>
 		</view>
-		
-		<uni-popup :show="gaimi" type="bottom" mode="fixed"  @hidePopup="hidePopup">
-			<view class="uni-list" >
-				<view class="build_01">
-					<view class="build_02_l">原密码：</view>
-					<view class="build_02_r" ><input placeholder="请输入" v-model="old_psd" type="password"  style="margin-top: 7px;"/></view>
-				</view>
-				<view class="build_01">
-					<view class="build_02_l">新密码：</view>
-					<view class="build_02_r" ><input placeholder="请输入" v-model="new_psd_A" type="password" style="margin-top: 8px;"/></view>
-				</view>
-				<view class="build_01" style="border: none;">
-					<view class="build_02_l">新密码：</view>
-					<view class="build_02_r" ><input placeholder="请输入" v-model="new_psd_B" type="password" style="margin-top: 8px;"/></view>
-				</view>
-				<view class="foot" >
-					<view class="foot_l" @click="change">取消</view>
-					<view class="foot_r" @click="sub_edit">确认</view>
-				</view>
-			</view>
-		</uni-popup>
 	</view>
-
 </template>
 
 <script>
-	import uniPopup from "@/components/uni/uni-popup/uni-popup.vue"
-	import uniIcon from "@/components/uni/uni-icon/uni-icon.vue" 
-	import Listd from "@/components/qy/List-d.vue"
 	export default {
 		data() {
 			return {
-				list: [1, 2, 3],
-				gaimi:false,
-				old_psd:'',
-				new_psd_A:'',
-				new_psd_B:''
+				search_value: '',
+				sign_list: '',
+				c_index: 0,
+				user: '',
+				sign: [" ", "管理员", "销售员", "采购员", "仓管人员", "转运人员", "财务员"],
 			};
-		},
-		components: {
-			uniIcon, 
-			Listd,uniPopup
+		},		
+		onLoad() {  
+			this.user=this.$api.json.user
+			this.sign_list=this.$api.json.sign_list
 		},
 		methods: {
-			tel(phone){
-			    uni.makePhoneCall({
-			     phoneNumber: phone
-			    });
-			}, 
-			change(){
-				this.gaimi=!this.gaimi
+			// jump_to_detail() {
+			// 	uni.navigateTo({
+			// 		url: '../kedetail/kedetail'
+			// 	});
+			// },
+			jump_user_manage() {
+				uni.navigateTo({
+					url: './user_manage/user_manage'
+				});
 			},
-			lout() {
-				uni.showModal({
-					title:'是否退出？',
-					success(res) { 
-						if(res.confirm){
-							uni.removeStorageSync('token')
-							uni.reLaunch({
-								url: '/pages/login/login'
-							})
-						}
-					}
-				})
-				
-			}
+			num(index) {
+				this.c_index = index
+			},
+			// jump_xiang(id) {
+			// 	uni.navigateTo({
+			// 		url: '/pages/kedetail/kedetail?id=' + id,
+			// 	});
+			// }
 		}
 	}
 </script>
 
-<style lang="less">
-	.user {
-		padding: 20px;background-color: #fff;min-height: 100vh;
-		.uni-list{width: 260px;font-size:16px;
-			.build_01{display: flex;border-bottom: 1px solid #F8F8F8;line-height: 35px;padding: 5px 0;}
-			.build_01_l{width: 80px;text-align: right;}
-			.build_01_r{color: #959595;padding-left: 20px;}
-			.foot{display: flex;border-top: 1px #F9F9F9 solid;line-height: 40px;height: 40px;margin-top: 30px;}
-			.foot_l{width: 50%;text-align: center;}
-			.foot_r{width: 50%;text-align: center;border-left: 1px #F9F9F9 solid ;color: #5095D3;}
+<style lang="scss">
+	.user_list {
+		.search {
+			background: #FFFFFF;
+			display: flex;
+			width: 100%;
+			box-sizing: border-box;
+			padding: 10px;
+		}
+		.tab {
+			padding: 10px 10%;
+			display: flex;
+			width: 100%;
+			.tab_normal {
+				padding-bottom: 5px;
+				min-width: 80px;
+				text-align: center;
+			}
+			.tab_focus {
+				border-bottom: 2px solid red;
+				padding-bottom: 5px;
+				min-width: 80px;
+				text-align: center;
+			}
 		}
 		.list {
-			line-height: 35px;
-		}
+			display: flex;
+			padding: 10px;
+			border-bottom: 1px solid #EAEAEA;
+			.list_l {
+				padding: 0 10px 0 0;
 
-		.list_01 {
-			padding: 15px 10px 8px;display: flex;justify-content: space-between;
-			border-bottom: 1px solid #F4F4F4;
-			font-size: 14px;
+				img {
+					width: 50px;
+					height: 50px;
+					border-radius: 5px;
+				}
+			}
+			.list_r {
+				line-height: 25px;
+				.list_r_01 {
+					.hui {
+						border: 1px solid #FF6D6D;
+						border-radius: 3px;
+						color: #ff6d6d;
+						font-size: 12px;
+						padding: 0 5px;
+						margin-left: 8px;
+					}
+				}
+				.list_r_02 {
+					color: #ABABAB;
+				}
+			}
+		}
+		.p_btn {
+			background: #FFFFFF;
+			padding: 0 10px 0px;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			z-index: 9999;
 		}
 	}
 </style>
