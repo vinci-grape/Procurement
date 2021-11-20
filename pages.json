@@ -57,25 +57,25 @@
 		"navigationBarTitleText": "",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#C0C4CC",
+		"selectedColor": "#fa436a",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",		
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tab-home.png",
+				"selectedIconPath": "static/tab-home-current.png",
+				"text": "后台"
+			}
+			// {
+			// 	"pagePath": "pages/user/reseller/reseller",
+			// 	"iconPath": "static/tab-my.png",
+			// 	"selectedIconPath": "static/tab-my-current.png",
+			// 	"text": "拓展"
+			// }
+		]
 	}
-	// "tabBar": {
-	// 	"color": "#C0C4CC",
-	// 	"selectedColor": "#fa436a",
-	// 	"borderStyle": "black",
-	// 	"backgroundColor": "#ffffff",		
-	// 	"list": [
-	// 		{
-	// 			"pagePath": "pages/index/index",
-	// 			"iconPath": "static/tab-home.png",
-	// 			"selectedIconPath": "static/tab-home-current.png",
-	// 			"text": "后台"
-	// 		},
-	// 		{
-	// 			"pagePath": "pages/user/reseller/reseller",
-	// 			"iconPath": "static/tab-my.png",
-	// 			"selectedIconPath": "static/tab-my-current.png",
-	// 			"text": "拓展"
-	// 		}
-	// 	]
-	// }
 }
