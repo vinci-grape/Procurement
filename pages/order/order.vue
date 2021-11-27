@@ -65,7 +65,7 @@
 						</view>
 						<view class="action-box b-t" v-if="item.state != 9">
 							<button class="action-btn" @click="cancelOrder(item)">取消订单</button>
-							<button class="action-btn recom" v-if="item.state == 2">立即分配</button>
+							<button class="action-btn recom" v-if="item.state == 2" @click="distributeOrder(item)">立即分配</button>
 							<button class="action-btn recom" v-if="item.state == 3">立即核验</button>
 							
 						</view>
@@ -225,6 +225,11 @@
 					
 					uni.hideLoading();
 				}, 600)
+			},
+			distributeOrder(item) {
+				uni.navigateTo({
+					url: '/pages/user/purchaser/purchaser'
+				});
 			},
 
 			//订单状态文字和颜色
