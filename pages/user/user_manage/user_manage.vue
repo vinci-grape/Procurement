@@ -19,7 +19,7 @@
 		</view>
 		<view class="cu-form-group" @click="useOutClickSide">
 			<view class="title">身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份：</view>
-	        <easy-select ref="easySelect" size="medium" @selectOne="selectOne" v-model="user_form.sign"></easy-select>
+	        <easy-select ref="easySelect" size="medium" @selectOne="selectOne" v-model="user_form.role"></easy-select>
 	    </view>	
 		<view class="H50"></view>
 		<view class="p_btn">
@@ -34,18 +34,18 @@
 	export default {
 		data() {
 			return {
-				sign: ['管理员', '销售员', '采购员', '仓管人员', '转运人员', '财务员'],
+				role: ['管理员', '销售员', '采购员', '仓管人员', '转运人员', '财务员'],
 				user_form: {
 					username: '',
 					name: '',
 					password: '',
-					sign: '',
+					role: '',
 				}
 			};
 		},
 		methods: {
 			selectOne(options) {
-				this.user_form.sign = options.label
+				this.user_form.role = options.label
 			},
 			useOutClickSide() {
 				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions()
@@ -64,6 +64,7 @@
 				//	})
 				//})
 				// this.$api.json.user[2] = this.$api.json.user[1]
+				this.$api.http.post('')
 				uni.navigateTo({
 					url: '../kehu'
 				});

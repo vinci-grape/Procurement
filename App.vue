@@ -1,4 +1,4 @@
-<script>
+.0<script>
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')

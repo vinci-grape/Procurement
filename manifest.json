@@ -1,5 +1,5 @@
 {
-    "name" : "商城手机端后台管理+多商户商家端+分销",
+    "name" : "globalSourcing",
     "appid" : "__UNI__9FCB1F9",
     "description" : "",
     "versionName" : "1.0.0",
@@ -47,7 +47,9 @@
             },
             "ios" : {},
             /* ios打包配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "ad" : {}
+            }
         }
     },
     /* SDK配置 */

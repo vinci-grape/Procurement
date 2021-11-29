@@ -5,13 +5,13 @@
 			<view class="login-center clearfix">
 				<view class="login-center-img"><image src="../../imgs/name.png" /></view>
 				<view class="login-center-input">
-					<input type="text" placeholder="请输入您的用户名" v-model="username"/>
+					<input type="text" placeholder="请输入您的用户名" v-model="account.username"/>
 				</view>
 			</view>
 			<view class="login-center clearfix">
 				<view class="login-center-img"><image src="../../imgs/password.png" /></view>
 				<view class="login-center-input">
-					<input type="password" placeholder="请输入您的密码" v-model="password"/>
+					<input type="password" placeholder="请输入您的密码" v-model="account.password"/>
 				</view>
 			</view>
 			<view class="login-button" @click="submit">登陆</view>
@@ -23,19 +23,28 @@
 export default {
 	data() {
 		return {
-			username:'',
-			password:'',
+			account: {
+				username: '',
+				password: ''
+			},
 		};
 	},
 	onLoad() {},
 	methods: {
 		submit(){
+			this.$api.http.post("/login", this.account).then(res => {
+				console.log(res)
+				// uni.setStorageSync()
+				uni.redirectTo({
+					url: '../index/index',
+				})
+			})
 		}
 	}
 };
 </script>
 
-<style>
+<style lang="scss">
 * {
 	box-sizing: content-box;
 }

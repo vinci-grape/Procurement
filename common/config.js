@@ -1,5 +1,3 @@
- 
- 
-const Api_url= 'http://www.xxx.com' 
+const Api_url= 'http://localhost:8181' 
 
 export {Api_url} 

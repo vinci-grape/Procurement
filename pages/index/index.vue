@@ -1,97 +1,33 @@
 <template>
 	<view class="index">
-		<view class="more">
-			<view class='mo'>
-				<view class='mo_01'>数据交易</view>
-				<navigator url="/pages/statistics/statistics"> 
-				<view class='mo_02'>更多 <uni-icon type="arrowright" size="15" color="#D6D6D6"></uni-icon>
-				</view>
-				</navigator>
-			</view>
-		</view>
-		<view class="shuju">
-			<view class="shuju_01">
-					<view>今日订单/金额</view>
-					<view class="shuju_01_s" v-if="count_order.today[0].today_money_total">{{count_order.today[0].today_num_total}} / ¥{{count_order.today[0].today_money_total}}</view>
-					<view class="shuju_01_s" v-else>0 / ¥0</view>
-			</view>
-			<view class="shuju_01 no">
-				<view>昨日订单/金额</view> 
-				<view class="shuju_01_s" v-if="count_order.yesterday[0].yesterday_money_total">{{count_order.yesterday[0].yesterday_num_total}} /
-				 ¥{{count_order.yesterday[0].yesterday_money_total}}</view>
-				 <view class="shuju_01_s" v-else>0 / ¥0</view>
-			</view>
-			
-			<view class="shuju_01">
-				<view>总订单数</view>
-				<view class="shuju_01_s ">{{count_order.total[0].all_num_total}}</view>
-			</view>
-			<view class="shuju_01 no">
-				<view>总销售金额</view>
-				<view class="shuju_01_s" v-if="count_order.total[0].all_money_total">¥ {{count_order.total[0].all_money_total}}</view>
-				 <view class="shuju_01_s" v-else>0 </view>
-			</view>
-		</view>
-		<view class="BH"></view>
-		<view class="six">
-			<!-- <view class="jiu_01">
-				<navigator url="/pages/edit/pro_manage/pro_manage">
-					<view><img src="../../imgs/6.png" /></view>
-					<view>商品管理</view>
-				</navigator>
-			</view> -->
-			<view class="jiu_01">
-				<navigator url="">
-					<view><img src="../../imgs/6.png" /></view>
-					<view>商品管理</view>
-				</navigator>
-			</view>
-			<view class="jiu_01">
-				<navigator url="/pages/order/order">
-					<view><img src="../../imgs/8.png" /></view>
-					<view>订单管理</view>
-				</navigator>
-			</view>
-			<view class="jiu_01">
-				<navigator url="/pages/statistics/statistics"> 
-					<view><img src="../../imgs/date.png" /></view>
-					<view>财务数据</view>
-				</navigator>
-			</view>
-			<view class="jiu_01 ">
-				<navigator url="/pages/user/user">
-					<view><img src="../../imgs/people.png" /></view>
-					<view>用户管理</view>
-				</navigator>
-			</view> 
-		</view>
-		<view class="BH"></view>
-		<view class="more">
-			<view class='mo'>
-				<view class='mo_01'>拓展版面 
-					 </view>
-				<view class='mo_02'></view>
-			</view>
-		</view>
-		<view class="list">
-			<view class="list_01" @click="jump_choose"></view>
-			<view class="list_01"></view>
-		</view>
-		<view class="H50"></view>
+		<user :receiveUser='receiveUser'></user>
+		<tabBar :pagePath="'/pages/user/user'"></tabBar>
 	</view>
 </template>
 
 <script>
+	import user from '../../components/user/user.vue'
 	export default {
 		data() {
 			return {
-				count_order:{}
+				receiveUser: {
+					user_list: '',
+					sign_list: '',
+					sign: ''
+				},
+				curUserType: ''
 			}
 		},
 		components: {
+			user,
+		},
+		created() {
+			this.curUserType=1
 		},
 		onLoad() {  
-			this.count_order=this.$api.json.count_order
+			this.receiveUser.user_list=this.$api.json.user
+			this.receiveUser.sign=this.$api.json.sign
+			this.receiveUser.sign_list=this.$api.json.sign_list
 		},
 		methods: {
 		}

@@ -3,24 +3,24 @@
 		{
             "path" : "pages/login/login",
             "style" : {
-				"navigationBarBackgroundColor": "#FFFFFF"
+				"navigationStyle":"custom"
 			}
         },
 		{
 		    "path" : "pages/index/index",
-		    "style" : {}
+		    "style" : {
+				"navigationStyle":"custom"
+			}
 		},
 		{
 			"path" : "pages/statistics/statistics",
 			"style" : {}
 		},
-		{
-		    "path" : "pages/user/user",
-		    "style" : {}
-		},
         {
             "path" : "pages/order/order",
-            "style" : {}
+            "style" : {
+            	"navigationStyle":"custom"
+            }
         },
 		{
             "path" : "pages/order/detail",
@@ -30,10 +30,13 @@
             "path" : "pages/order/detail/detail",
             "style" : {}
         }
-    
         ,{
-            "path" : "pages/user/user_manage/user_manage",
-            "style" : {}
+            "path" : "pages/statistics/statistics",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            } 
         }
         ,{
             "path" : "pages/statistics/statistics",
@@ -42,25 +45,31 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
-        }
-        ,{
-            "path" : "pages/statistics/statistics",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
+        },
+		{
+		    "path" : "components/user/user_manage/user_manage",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+		    "path" : "pages/user/user",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		}
         ,{
             "path" : "pages/user/purchaser/purchaser",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "分配采购员",
                 "enablePullDownRefresh": false
-            }
-            
+            } 
         }
     ],
 	"globalStyle": {
@@ -69,24 +78,5 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"tabBar": {
-		"color": "#C0C4CC",
-		"selectedColor": "#fa436a",
-		"borderStyle": "black",
-		"backgroundColor": "#ffffff",		
-		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"iconPath": "static/tab-home.png",
-				"selectedIconPath": "static/tab-home-current.png",
-				"text": "后台"
-			},
-			{
-				"pagePath": "pages/user/reseller/reseller",
-				"iconPath": "static/tab-my.png",
-				"selectedIconPath": "static/tab-my-current.png",
-				"text": "拓展"
-			}
-		]
-	}
+	"custom": true
 }

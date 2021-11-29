@@ -58,8 +58,12 @@ const yfmoban={"name":3,"fanwei":"未有商品使用",
 const user=[{name: '殷鑫', username: '15858780802',id: 1, pic: require('@/imgs/8.jpg'), password: '15858780802', sign_id: 3, sign: '管理员'},
 					{name: '蒋步高', username: '蒋步高', id: 2, pic: require('@/imgs/3.jpg'), password: '18390188785', sign_id: 3, sign: '销售员'}]
 
+const sign=[" ", "管理员", "销售员", "采购员", "仓管人员", "转运人员", "财务员"]
+
 const sign_list=[{"sign_id":1,"category_name":"管理员"},{"sign_id":2,"category_name":"销售员"},
 		{"sign_id":3,"category_name":"采购员"},{"sign_id":4,"category_name":"仓管人员"},{"sign_id":5,"category_name":"转运人员"},{"sign_id":6,"category_name":"财务员"}]
+
+
 
 export default {
 	count_order,

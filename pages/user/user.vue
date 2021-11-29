@@ -11,7 +11,7 @@
 				</block>
 			</view>
 		</scroll-view>
-		<block v-for="(item, index) of user" v-if="c_index==0||item.sign_id==c_index" >
+		<block v-for="(item, index) of user_list" v-if="c_index==0||item.sign_id==c_index" >
 			<view class="list" @click="jump_to_detail(item.id)">
 				<view class="list_l"><img :src="item.pic"></img></view>
 				<view class="list_r">
@@ -33,35 +33,31 @@
 		data() {
 			return {
 				search_value: '',
-				sign_list: '',
 				c_index: 0,
-				user: '',
-				sign: [" ", "管理员", "销售员", "采购员", "仓管人员", "转运人员", "财务员"],
+				user_list: '',
+				sign_list: '',
+				sign: ''
 			};
 		},		
 		onLoad() {  
-			this.user=this.$api.json.user
-			this.sign_list=this.$api.json.sign_list
+			this.user_list=this.$api.json.user,
+			this.sign_list=this.$api.json.sign_list,
+			this.sign=this.$api.json.sign
 		},
 		methods: {
-			// jump_to_detail() {
-			// 	uni.navigateTo({
-			// 		url: '../kedetail/kedetail'
-			// 	});
-			// },
+			jump_to_detail() {
+				uni.navigateTo({
+					url: '../kedetail/kedetail'
+				});
+			},
 			jump_user_manage() {
 				uni.navigateTo({
-					url: './user_manage/user_manage'
+					url: '/components/user/user_manage/user_manage'
 				});
 			},
 			num(index) {
 				this.c_index = index
 			},
-			// jump_xiang(id) {
-			// 	uni.navigateTo({
-			// 		url: '/pages/kedetail/kedetail?id=' + id,
-			// 	});
-			// }
 		}
 	}
 </script>
@@ -125,7 +121,7 @@
 			background: #FFFFFF;
 			padding: 0 10px 0px;
 			position: fixed;
-			bottom: 0;
+			bottom: 100rpx;
 			width: 100%;
 			z-index: 9999;
 		}
