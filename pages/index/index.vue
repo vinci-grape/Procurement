@@ -1,7 +1,7 @@
 <template>
 	<view class="index">
 		<user :receiveUser='receiveUser'></user>
-		<tabBar :pagePath="'/pages/user/user'"></tabBar>
+		<!-- <tabBar :pagePath="'/pages/user/user'"></tabBar> -->
 	</view>
 </template>
 

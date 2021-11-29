@@ -63,22 +63,22 @@
 				type: Array,
 				default () {
 					return [{
-						value: '选项1',
+						value: 'ADMIN',
 						label: '管理员'
 					}, {
-						value: '选项2',
+						value: 'SALESPERSON',
 						label: '销售员'
 					}, {
-						value: '选项3',
+						value: 'BUYER',
 						label: '采购员'
 					}, {
-						value: '选项4',
-						label: '仓管人员'
+						value: 'WAREHOUSE_KEEPER',
+						label: '仓管员'
 					}, {
-						value: '选项5',
-						label: '转运人员'
+						value: 'TRANSPORTER',
+						label: '转运员'
 					}, {
-						value: '选项6',
+						value: 'TREASURER',
 						label: '财务员'
 					}]
 				}

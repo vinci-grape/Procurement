@@ -3,9 +3,6 @@
 		<view class="top">
 		</view>
 		<view class="cu-form-group">
-			<view class="title">新增用户</view>
-		</view>
-		<view class="cu-form-group">
 			<view class="title">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</view>
 			<input placeholder="请输入账号"  v-model="user_form.username" focus></input>
 		</view>
@@ -19,7 +16,7 @@
 		</view>
 		<view class="cu-form-group" @click="useOutClickSide">
 			<view class="title">身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份：</view>
-	        <easy-select ref="easySelect" size="medium" @selectOne="selectOne" v-model="user_form.role"></easy-select>
+	        <easy-select ref="easySelect" size="medium" @selectOne="selectOne" v-model="role"></easy-select>
 	    </view>	
 		<view class="H50"></view>
 		<view class="p_btn">
@@ -34,7 +31,8 @@
 	export default {
 		data() {
 			return {
-				role: ['管理员', '销售员', '采购员', '仓管人员', '转运人员', '财务员'],
+				role: '',
+				// role: ['管理员', '销售员', '采购员', '仓管人员', '转运人员', '财务员'],
 				user_form: {
 					username: '',
 					name: '',
@@ -45,12 +43,12 @@
 		},
 		methods: {
 			selectOne(options) {
-				this.user_form.role = options.label
+				this.role = options.label
+				this.user_form.role = options.value
 			},
 			useOutClickSide() {
 				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions()
 			},
-			//---------------------------------------------------------------提交
 			sub() {  
 				//this.$api.http.post('shop_cms/add_shop_coupon', {
 				//	username: this.user_form.stock_type,
@@ -58,17 +56,17 @@
 				//	name: this.user_form.name,
 				//	sign: this.user_form.reduce,
 				//}).then(res => {
-				//	this.$api.msg('添加成功')
+				//	
+				
 				//	uni.redirectTo({
 				//		url:'../couponlist/couponlist'
 				//	})
 				//})
-				// this.$api.json.user[2] = this.$api.json.user[1]
-				this.$api.http.post('')
-				uni.navigateTo({
-					url: '../kehu'
-				});
-			},
+				this.$api.http.post('/user/insert', this.user_form).then(res => {
+					console.log(res)
+					// this.$api.msg('添加成功')
+				})
+			}
 		}
 	}
 </script>
@@ -85,6 +83,7 @@
 		bottom: 0;
 		width: 100%;
 		z-index: 9999;
+		
 	}
 	.u_input {
 		font-size: 15px;

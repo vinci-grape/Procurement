@@ -29,16 +29,16 @@
 		{
             "path" : "pages/order/detail/detail",
             "style" : {}
-        }
-        ,{
+        },
+		{
             "path" : "pages/statistics/statistics",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             } 
-        }
-        ,{
+        },
+		{
             "path" : "pages/statistics/statistics",
             "style" :                                                                                    
             {
@@ -47,23 +47,21 @@
             }
         },
 		{
-		    "path" : "components/user/user_manage/user_manage",
+		    "path" : "pages/user/user_manage/user_manage",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "",
+		        "navigationBarTitleText": "新增用户",
 		        "enablePullDownRefresh": false
 		    }
-		    
 		},
 		{
 		    "path" : "pages/user/user",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
+		        "navigationStyle":"custom"
 		    }
-		}
-        ,{
+		},
+		{
             "path" : "pages/user/purchaser/purchaser",
             "style" :                                                                                    
             {
@@ -77,6 +75,5 @@
 		"navigationBarTitleText": "",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
-	},
-	"custom": true
+	}
 }

@@ -33,11 +33,11 @@ export default {
 	methods: {
 		submit(){
 			this.$api.http.post("/login", this.account).then(res => {
-				console.log(res)
 				// uni.setStorageSync()
 				uni.redirectTo({
-					url: '../index/index',
+					url: '../user/user',
 				})
+				
 			})
 		}
 	}

@@ -52,7 +52,7 @@
 			},
 			jump_user_manage() {
 				uni.navigateTo({
-					url: '/components/user/user_manage/user_manage'
+					url: './user_manage/user_manage'
 				});
 			},
 			num(index) {
@@ -121,7 +121,8 @@
 			background: #FFFFFF;
 			padding: 0 10px 0px;
 			position: fixed;
-			bottom: 100rpx;
+			// bottom: 100rpx;
+			bottom: 0;
 			width: 100%;
 			z-index: 9999;
 		}
