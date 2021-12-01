@@ -39,15 +39,7 @@
             } 
         },
 		{
-            "path" : "pages/statistics/statistics",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-        },
-		{
-		    "path" : "pages/user/user_manage/user_manage",
+		    "path" : "pages/user/user_append/user_append",
 		    "style" :                                                                                    
 		    {
 		        "navigationBarTitleText": "新增用户",
@@ -67,7 +59,17 @@
             {
                 "navigationBarTitleText": "分配采购员",
                 "enablePullDownRefresh": false
+				
             } 
+        }
+        ,{
+            "path" : "pages/user/user_edit/user_edit",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改信息",
+                "enablePullDownRefresh": false
+            }
+            
         }
     ],
 	"globalStyle": {

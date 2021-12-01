@@ -18,6 +18,10 @@ export default {
 				var [error, res] = data; 
 				var res_code = res.data.status;
 				if (res_code == 200){
+					uni.showToast({
+						title: res.data.message,
+						icon: 'none'
+					})
 					cback(res.data.data);
 				} else {
 					uni.showToast({
@@ -98,6 +102,41 @@ export default {
 						icon:'none'
 					})
 				}				
+			}).catch(err => { 
+				console.log('请求异常:',err); 	
+				uni.showToast({
+					title:'请求异常',
+					icon:'none'
+				})
+			})
+		})
+	},
+	
+	put(url, param) {
+		return new Promise((cback, reject) => {
+			uni.request({
+				url: Api_url + url,
+				data: param,
+				method: 'put',
+				header: {
+					'token': uni.getStorageSync("token"),
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+			}).then(data => { // data为一个数组，数组第一项为错误信息，第二项为返回数据
+				var [error, res] = data; 
+				var res_code = res.data.status;
+				if (res_code == 200){
+					uni.showToast({
+						title: res.data.message,
+						icon: 'none'
+					})
+					cback(res.data.data);
+				} else {
+					uni.showToast({
+						title: res.data.message,
+						icon: 'none'
+					})
+				}
 			}).catch(err => { 
 				console.log('请求异常:',err); 	
 				uni.showToast({

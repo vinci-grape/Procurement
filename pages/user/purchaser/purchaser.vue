@@ -29,9 +29,10 @@
 		data() {
 			return {
 				choose: '',
+				current: ''
 			};
-		},		
-		onLoad() {  
+		},
+		onLoad() {
 			this.user=this.$api.json.user
 		},
 		methods: {

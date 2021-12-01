@@ -43,16 +43,23 @@
 			this.user_list=this.$api.json.user,
 			this.sign_list=this.$api.json.sign_list,
 			this.sign=this.$api.json.sign
+			// this.$api.http.post("/login", this.account).then(res => {
+			// 	// uni.setStorageSync()
+			// 	uni.redirectTo({
+			// 		url: '../user/user',
+			// 	})
+			// })
 		},
 		methods: {
-			jump_to_detail() {
+			jump_to_detail(id) {
+				console.log(id)
 				uni.navigateTo({
-					url: '../kedetail/kedetail'
+					url: './user_edit/user_edit?id='+id
 				});
 			},
 			jump_user_manage() {
 				uni.navigateTo({
-					url: './user_manage/user_manage'
+					url: './user_append/user_append'
 				});
 			},
 			num(index) {
