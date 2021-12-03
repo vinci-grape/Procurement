@@ -7,10 +7,10 @@
 					</view>
 					<view class="list">
 						<radio class="radio" :value="item.name" :checked="index === current" />
-						<view class="list_l"><img :src="item.pic"></img></view>
+						<view class="list_l"><!-- <img :src="item.pic"></img> --></view>
 						<view class="list_r">
-							<view class="list_r_01">{{item.name}}</view>
-							<view class="list_r_02">{{item.username}}</view>
+							<view class="list_r_01">{{item.username}}</view>
+							<view class="list_r_02">{{item.name}}</view>
 						</view>
 					</view>
 				</label>

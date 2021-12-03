@@ -33,11 +33,9 @@ export default {
 	methods: {
 		submit(){
 			this.$api.http.post("/login", this.account).then(res => {
-				// uni.setStorageSync()
 				uni.redirectTo({
-					url: '../user/user',
+					url: '/pages/user/user',
 				})
-				
 			})
 		}
 	}

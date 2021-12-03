@@ -58,12 +58,14 @@ const yfmoban={"name":3,"fanwei":"未有商品使用",
 const user=[{name: '殷鑫', username: '15858780802',id: 1, pic: require('@/imgs/8.jpg'), password: '15858780802', sign_id: 0, sign: '管理员'},
 					{name: '蒋步高', username: '18390818785', id: 2, pic: require('@/imgs/3.jpg'), password: '18390188785', sign_id: 3, sign: '销售员'}]
 
-const sign=[" ", "管理员", "销售员", "采购员", "仓管人员", "转运人员", "财务员"]
+const sign=[" ", "管理员", "销售员", "采购员", "仓管员", "转运员", "财务员"]
 
-const sign_list=[{"sign_id":1,"category_name":"管理员"},{"sign_id":2,"category_name":"销售员"},
-		{"sign_id":3,"category_name":"采购员"},{"sign_id":4,"category_name":"仓管人员"},{"sign_id":5,"category_name":"转运人员"},{"sign_id":6,"category_name":"财务员"}]
+// const role_list=[{"role_id": 0, "role_name": "管理员"}, {"role_id":1,"role_name": "销售员"},
+// 		{"role_id": 2, "role_name": "采购员"}, {"role_id": 3,"role_name": "仓管人员"}, {"role_id": 4, "role_name": "转运人员"}, {"role_id": 5, "role_name": "财务员"}]
 
+const role_list = ["管理员", "销售员", "采购员", "仓管员", "转运员", "财务员"]
 
+const role_map = {"ADMIN": ["管理员", 0], "SALESPERSON": ["销售员", 1], "BUYER": ["采购员", 2], "WAREHOUSE_KEEPER": ["仓管员", 3], "TRANSPORTER": ["转运员", 4], "TREASURER": ["财务员", 5]}
 
 export default {
 	count_order,
@@ -77,7 +79,8 @@ export default {
 	yunfei,
 	yfmoban,
 	user,
-	sign_list,
+	role_list,
+	role_map,
 	get_tx_log,
 	get_sale_money,
 	get_card,

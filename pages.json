@@ -1,4 +1,11 @@
 {
+	"easycom": {
+	        // npm安装的方式不需要前面的"@/"，下载安装的方式需要"@/"
+	        // npm安装方式
+	        "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	        // 下载安装方式
+	        // "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
             "path" : "pages/login/login",
@@ -50,7 +57,8 @@
 		    "path" : "pages/user/user",
 		    "style" :                                                                                    
 		    {
-		        "navigationStyle":"custom"
+		        "navigationStyle":"custom",
+				"enablePullDownRefresh": true
 		    }
 		},
 		{
@@ -63,15 +71,32 @@
             } 
         }
         ,{
-            "path" : "pages/user/user_edit/user_edit",
+            "path" : "pages/user/password_change/password_change",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "修改信息",
+                "navigationBarTitleText": "修改密码",
+                "enablePullDownRefresh": false
+            }  
+        }
+        ,{
+            "path" : "pages/order/order_append/order_append",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "添加订单",
                 "enablePullDownRefresh": false
             }
-            
         }
     ],
+	// "tabBar": {
+	// 	"list": [
+	// 		{
+	// 			"pagePath": "pages/user/user"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/order/order"
+	// 		}
+	// 	]
+	// },
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "",

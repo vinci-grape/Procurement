@@ -1,28 +1,28 @@
 <template>
 	<view class="user_list">
 		<view class="search">
-			<uni-easyinput suffixIcon="search" v-model="search_value" placeholder="请输入内容" @iconClick="onClick" color="#A5A5A5"></uni-easyinput>
+			<uni-easyinput suffixIcon="search" v-model="username" placeholder="请输入内容" @iconClick="search" color="#A5A5A5"></uni-easyinput>
 		</view>
 		<scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
 			<view class='tab'>
 				<view :class="c_index==0?'tab_focus':'tab_normal'" @click="num(0)">全部</view>
-				<block v-for="(item, index) of sign_list">
-					<view :class="c_index==(index+1)?'tab_focus':'tab_normal'" @click="num(index+1)">{{item.category_name}}</view>
+				<block v-for="(item, index) of role_list">
+					<view :class="c_index==(index+1)?'tab_focus':'tab_normal'" @click="num(index+1)">{{item}}</view>
 				</block>
 			</view>
 		</scroll-view>
-		<block v-for="(item, index) of user_list" v-if="c_index==0||item.sign_id==c_index" >
-			<view class="list" @click="jump_to_detail(item.id)">
-				<view class="list_l"><img :src="item.pic"></img></view>
+		<block v-for="(item, index) of user_list" v-if="c_index==0||role_map[item.role][1]==c_index - 1">
+			<view class="list" @click="jump_password_change(item.id)">
+				<view class="list_l"><!-- <img :src="item.pic"></img> --></view>
 				<view class="list_r">
-					<view class="list_r_01">{{item.name}}<span class="hui">{{item.sign}}</span></view>
-					<view class="list_r_02">{{item.username}}</view>
+					<view class="list_r_01">{{item.username}}<span class="hui">{{role_map[item.role][0]}}</span></view>
+					<view class="list_r_02">{{item.name}}</view>
 				</view>
 			</view>
 		</block>
 		<view class="p_btn">
 			<view class="flex flex-direction" >
-				<button @click="jump_user_manage" class="cu-btn bg-red margin-tb-sm lg">新增用户</button>
+				<button @click="jump_user_append" class="cu-btn bg-red margin-tb-sm lg">新增用户</button>
 			</view>
 		</view>
 	</view>
@@ -32,32 +32,40 @@
 	export default {
 		data() {
 			return {
-				search_value: '',
+				request: {
+					page: '0',
+					size: '7'
+				},
+				username: '',
 				c_index: 0,
 				user_list: '',
-				sign_list: '',
-				sign: ''
+				role_list: '',
+				role_map: '',
 			};
-		},		
-		onLoad() {  
-			this.user_list=this.$api.json.user,
-			this.sign_list=this.$api.json.sign_list,
-			this.sign=this.$api.json.sign
-			// this.$api.http.post("/login", this.account).then(res => {
-			// 	// uni.setStorageSync()
-			// 	uni.redirectTo({
-			// 		url: '../user/user',
-			// 	})
-			// })
+		},
+		onLoad() { 
+			this.init()
+		},
+		onPullDownRefresh(){
+			this.init()
+			setTimeout(function () {
+				uni.stopPullDownRefresh();
+			}, 1000);
 		},
 		methods: {
-			jump_to_detail(id) {
-				console.log(id)
+			init() {
+				this.$api.http.get('/user/findAll', this.request).then(res => {
+					this.user_list = res.content
+				})
+				this.role_list=this.$api.json.role_list
+				this.role_map = this.$api.json.role_map
+			},
+			jump_password_change(id) {
 				uni.navigateTo({
-					url: './user_edit/user_edit?id='+id
+					url: './password_change/password_change?id='+id
 				});
 			},
-			jump_user_manage() {
+			jump_user_append() {
 				uni.navigateTo({
 					url: './user_append/user_append'
 				});
@@ -65,6 +73,12 @@
 			num(index) {
 				this.c_index = index
 			},
+			search() {
+				this.$api.http.get('/user/findByUsername?username=' + this.username, this.username).then(res => {
+					this.user_list = []
+					this.user_list.push(res)
+				})
+			}
 		}
 	}
 </script>

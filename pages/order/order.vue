@@ -67,7 +67,6 @@
 							<button class="action-btn" @click="cancelOrder(item)">取消订单</button>
 							<button class="action-btn recom" v-if="item.state == 2" @click="distributeOrder(item)">立即分配</button>
 							<button class="action-btn recom" v-if="item.state == 3">立即核验</button>
-							
 						</view>
 					</view>
 					<uni-load-more :status="tabItem.loadingType"></uni-load-more>
@@ -110,12 +109,6 @@
 					{
 						state: 3,
 						text: '待核验',
-						loadingType: 'more',
-						orderList: []
-					},
-					{
-						state: 4,
-						text: '售后',
 						loadingType: 'more',
 						orderList: []
 					}

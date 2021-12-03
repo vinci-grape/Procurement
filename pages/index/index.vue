@@ -2,6 +2,18 @@
 	<view class="index">
 		<user :receiveUser='receiveUser'></user>
 		<!-- <tabBar :pagePath="'/pages/user/user'"></tabBar> -->
+		<u-tabbar
+			:value="value6"
+			@change="name => value6 = name"
+			:fixed="true"
+			:placeholder="true"
+			:safeAreaInsetBottom="true"
+		>
+			<u-tabbar-item text="用户" icon="man-add"></u-tabbar-item>
+			<u-tabbar-item text="订单" icon="order" ></u-tabbar-item>
+			<!-- <u-tabbar-item text="直播" icon="play-right" ></u-tabbar-item> -->
+			<u-tabbar-item text="我的" icon="account" ></u-tabbar-item>
+		</u-tabbar>
 	</view>
 </template>
 
@@ -15,6 +27,7 @@
 					sign_list: '',
 					sign: ''
 				},
+				value6: 2,
 				curUserType: ''
 			}
 		},

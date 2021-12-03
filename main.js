@@ -5,7 +5,9 @@ import http from './common/axios.js'
 import tabBar from "@/components/my-tabbar/my-tabbar.vue"
 import './assets/style/border.css'
 import './assets/style/main.css'
+import uView from 'uview-ui';
 
+Vue.use(uView);
 Vue.component('tabBar', tabBar)
 Vue.config.productionTip = false
 Vue.prototype.$api = {msg, json, http};
