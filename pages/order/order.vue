@@ -65,14 +65,19 @@
 						</view>
 						<view class="action-box b-t" v-if="item.state != 9">
 							<button class="action-btn" @click="cancelOrder(item)">取消订单</button>
-							<button class="action-btn recom" v-if="item.state == 2" @click="distributeOrder(item)">立即分配</button>
-							<button class="action-btn recom" v-if="item.state == 3">立即核验</button>
+							<button class="action-btn recom" v-if="item.state == 1" @click="distributeOrder(item)">立即分配</button>
+							<button class="action-btn recom" v-if="item.state == 2">立即核验</button>
 						</view>
 					</view>
 					<uni-load-more :status="tabItem.loadingType"></uni-load-more>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
+		<view class="p_btn">
+			<view class="flex flex-direction" >
+				<button @click="jump_order_append" class="cu-btn bg-red margin-tb-sm lg">新增订单</button>
+			</view>
+		</view>
 	</view>
 </template> 
 
@@ -94,20 +99,20 @@
 						loadingType: 'more',
 						orderList: []
 					},
+					// {
+					// 	state: 1,
+					// 	text: '待付款',
+					// 	loadingType: 'more',
+					// 	orderList: []
+					// },
 					{
 						state: 1,
-						text: '待付款',
-						loadingType: 'more',
-						orderList: []
-					},
-					{
-						state: 2,
 						text: '待分配',
 						loadingType: 'more',
 						orderList: []
 					},
 					{
-						state: 3,
+						state: 2,
 						text: '待核验',
 						loadingType: 'more',
 						orderList: []
@@ -221,7 +226,7 @@
 			},
 			distributeOrder(item) {
 				uni.navigateTo({
-					url: '/pages/user/purchaser/purchaser'
+					url: '/pages/user/buyer_assign/buyer_assign'
 				});
 			},
 
@@ -230,11 +235,11 @@
 				let stateTip = '',
 					stateTipColor = '#fa436a';
 				switch(+state){
+					// case 1:
+					// 	stateTip = '待付款'; break;
 					case 1:
-						stateTip = '待付款'; break;
-					case 2:
 						stateTip = '待分配'; break;
-					case 3:
+					case 2:
 						stateTip = '待核验'; break;
 					case 9:
 						stateTip = '订单已关闭'; 
@@ -244,6 +249,12 @@
 					//更多自定义
 				}
 				return {stateTip, stateTipColor};
+			},
+			
+			jump_order_append() {
+				uni.navigateTo({
+					url: '/pages/order/order_append/order_append'
+				});
 			}
 		},
 	}
@@ -564,6 +575,14 @@
 	
 	.load3 view:nth-child(4) {
 		animation-delay: 1.43s
+	}
+	.p_btn {
+		background: #FFFFFF;
+		padding: 0 10px 0px;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		z-index: 9999;
 	}
 	
 	@-webkit-keyframes load {

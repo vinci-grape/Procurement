@@ -34,7 +34,7 @@ export default {
 		submit(){
 			this.$api.http.post("/login", this.account).then(res => {
 				uni.redirectTo({
-					url: '/pages/user/user',
+					url: '/pages/index/index',
 				})
 			})
 		}

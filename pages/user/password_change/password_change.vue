@@ -4,7 +4,7 @@
 		</view>
 		<view class="cu-form-group">
 			<view class="title">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</view>
-			<input v-model="user_form.username" disabled="true"></input>
+			<input v-model="username" disabled="true"></input>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</view>
@@ -31,12 +31,10 @@
 	export default {
 		data() {
 			return {
-				role: '',
+				username: '',
 				user_form: {
-					username: '',
-					name: '',
+					id: '',
 					password: '',
-					role: '',
 				}
 			};
 		},
@@ -44,35 +42,19 @@
 			Listeningfocus() {
 				this.user_form.password = ''
 			},
-			init() {
-				this.user_form.username = '',
-				this.user_form.name = '',
-				this.user_form.password = '',
-				this.user_form.role = '',
-				this.role = ''
-			},
-			selectOne(options) {
-				this.role = options.label
-				this.user_form.role = options.value
-			},
-			useOutClickSide() {
-				this.$refs.easySelect.hideOptions && this.$refs.easySelect.hideOptions()
-			},
 			update() {  
-				console.log(this.user_form.role)
 				this.$api.http.put('/user/updatePassword', this.user_form).then(res => {
 					uni.showToast({
 						title: '修改成功',
 						icon: 'none'
 					})
-					this.init()
+					uni.navigateBack()
 				})
 			}
 		},
 		onLoad: function (option) {
-			option.id = 0
-			this.user_form = this.$api.json.user[option.id]
-			this.role = this.$api.json.user[option.id].role
+			this.username = option.username
+			this.user_form.id = option.id
 		}
 	}
 </script>

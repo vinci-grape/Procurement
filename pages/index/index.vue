@@ -1,48 +1,127 @@
 <template>
 	<view class="index">
-		<user :receiveUser='receiveUser'></user>
-		<!-- <tabBar :pagePath="'/pages/user/user'"></tabBar> -->
-		<u-tabbar
-			:value="value6"
-			@change="name => value6 = name"
-			:fixed="true"
-			:placeholder="true"
-			:safeAreaInsetBottom="true"
-		>
-			<u-tabbar-item text="用户" icon="man-add"></u-tabbar-item>
-			<u-tabbar-item text="订单" icon="order" ></u-tabbar-item>
-			<!-- <u-tabbar-item text="直播" icon="play-right" ></u-tabbar-item> -->
-			<u-tabbar-item text="我的" icon="account" ></u-tabbar-item>
-		</u-tabbar>
+		<view class="more">
+			<view class='mo'>
+				<view class='mo_01'>财务分析</view>
+				<navigator url="/pages/user/tongji/tongji"> 
+				<view class='mo_02'>更多 <uni-icon type="arrowright" size="15" color="#D6D6D6"></uni-icon>
+				</view>
+				</navigator>
+			</view>
+		</view>
+		<view class="shuju">
+			<view class="shuju_01">
+					<view>今日订单/金额</view>
+					<view class="shuju_01_s" v-if="shop.today[0].today_money_total">{{shop.today[0].today_num_total}} / ¥{{shop.today[0].today_money_total}}</view>
+					<view class="shuju_01_s" v-else>0 / ¥0</view>
+			</view>
+			<view class="shuju_01 no">
+				<view>昨日订单/金额</view> 
+				<view class="shuju_01_s" v-if="shop.yesterday[0].yesterday_money_total">{{shop.yesterday[0].yesterday_num_total}} /
+				 ¥{{shop.yesterday[0].yesterday_money_total}}</view>
+				 <view class="shuju_01_s" v-else>0 / ¥0</view>
+			</view>
+			
+			<view class="shuju_01">
+				<view>总订单数</view>
+				<view class="shuju_01_s ">{{shop.total[0].all_num_total}}</view>
+			</view>
+			<view class="shuju_01 no">
+				<view>总销售金额</view>
+				<view class="shuju_01_s" v-if="shop.total[0].all_money_total">¥ {{shop.total[0].all_money_total}}</view>
+				 <view class="shuju_01_s" v-else>0 </view>
+			</view>
+		</view>
+		<view class="BH"></view>
+		<view class="six">
+			<view class="jiu_01 ">
+				<navigator url="/pages/user/user">
+					<view><img src="../../imgs/people.png" /></view>
+					<view>用户管理</view>
+				</navigator>
+			</view> 
+			<view class="jiu_01">
+				<navigator url="/pages/edit/pro_manage/pro_manage">
+					<view><img src="../../imgs/6.png" /></view>
+					<view>商品管理</view>
+				</navigator>
+			</view>
+			<view class="jiu_01">
+				<navigator url="/pages/order/order">
+					<view><img src="../../imgs/8.png" /></view>
+					<view>订单管理</view>
+				</navigator>
+			</view>
+			<view class="jiu_01">
+				<navigator url="/pages/user/tongji/tongji"> 
+					<view><img src="../../imgs/date.png" /></view>
+					<view>财务分析</view>
+				</navigator>
+			</view>
+		</view>
+		<view class="BH"></view>
+		<view class="more">
+			<view class='mo'>
+				<view class='mo_01'>拓展
+					 </view>
+				<view class='mo_02'></view>
+			</view>
+		</view>
+		<view class="list">
+			<view class="list_01">拓展</view>
+		</view>
+		<view class="H50">
+			</view>
+		<!-- 弹窗 -->
+		<view v-if="tancl">
+			<Tan @close_add="tan"></Tan>
+		</view>
 	</view>
 </template>
 
 <script>
-	import user from '../../components/user/user.vue'
+	import uniBadge from "@/components/uni/uni-badge/uni-badge.vue"
+	import uniIcon from "@/components/uni/uni-icon/uni-icon.vue"
+	import Tan from "@/components/qy/Tan.vue"
 	export default {
 		data() {
 			return {
-				receiveUser: {
-					user_list: '',
-					sign_list: '',
-					sign: ''
-				},
-				value6: 2,
-				curUserType: ''
+				tancl: false,
+				shop:{}
 			}
 		},
 		components: {
-			user,
-		},
-		created() {
-			this.curUserType=1
+			uniIcon,
+			uniBadge,
+			Tan
 		},
 		onLoad() {  
-			this.receiveUser.user_list=this.$api.json.user
-			this.receiveUser.sign=this.$api.json.sign
-			this.receiveUser.sign_list=this.$api.json.sign_list
+			this._load()
 		},
 		methods: {
+			_load(){
+				this.shop=this.$api.json.count_order
+			},
+			//弹窗
+			tan() {
+				this.tancl = !this.tancl
+			},
+			//扫码
+			shao(){
+				uni.scanCode({
+					onlyFromCamera: true,
+					success: function (res) {
+						uni.navigateTo({
+							url:'pages/edit/yanzheng/yanzheng?code='+res.result
+						})
+					}
+				});
+			},
+			jump_choose(){
+				uni.navigateTo({
+					url:'/pages/choose/choose'
+				})
+			}
 		}
 	}
 </script>
@@ -61,14 +140,12 @@
 			color: #fff;
 			font-size: 14px;
 		}
-
 		.jiu {
 			padding: 10px;
 			display: flex;
 			flex-wrap: wrap;
 			color: #fff;
 		}
-
 		.jiu_01 {
 			width: 33%;
 			text-align: center;
@@ -76,13 +153,11 @@
 			box-sizing: border-box;
 			font-size: 12px;
 		}
-
 		.jiu_01 img {
 			width: 32px;
 			height: 32px;
 			margin-bottom: 10px;
 		}
-
 		.mo {
 			padding: 10px;
 			display: flex;
@@ -90,7 +165,6 @@
 			border-bottom: 1px solid #f0f0f0;
 			line-height: 20px;
 		}
-
 		.mo_01 {
 			padding-left: 10px;
 			box-sizing: border-box;
@@ -101,23 +175,19 @@
 			font-size: 14px;
 			font-weight: bold;
 		}
-
 		.mo_01 span {
 			color: #8E8E8E;
 			font-weight: 100;
 			font-size: 12px;
 			padding-left: 10px;
 		}
-
 		.mo_02 {
 			color: #D6D6D6;
 		}
-
 		.shuju {
 			display: flex;
 			flex-wrap: wrap;
 		}
-
 		.shuju_01 {
 			width: 50%;
 			text-align: center;
@@ -129,28 +199,23 @@
 			border-right: 1px solid #f0f0f0;
 			border-bottom: 1px solid #f0f0f0;
 		}
-
 		.shuju_01_s {
 			color: #EB511B;
 			font-weight: 800;
 			font-size: 16px;
 		}
-
 		.no {
 			border-right: none;
 		}
-
 		.BH {
 			background-color: #F1F1F1;
 			height: 5px;
 		}
-
 		.six {
 			padding: 10px;
 			display: flex;
 			flex-wrap: wrap;
 		}
-
 		.list_01 {
 			padding: 15px 10px 8px;
 			border-bottom: 1px solid #F4F4F4;

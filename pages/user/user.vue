@@ -12,7 +12,7 @@
 			</view>
 		</scroll-view>
 		<block v-for="(item, index) of user_list" v-if="c_index==0||role_map[item.role][1]==c_index - 1">
-			<view class="list" @click="jump_password_change(item.id)">
+			<view class="list" @click="jump_password_change(item)">
 				<view class="list_l"><!-- <img :src="item.pic"></img> --></view>
 				<view class="list_r">
 					<view class="list_r_01">{{item.username}}<span class="hui">{{role_map[item.role][0]}}</span></view>
@@ -26,9 +26,10 @@
 			</view>
 		</view>
 	</view>
+	
 </template>
 
-<script>
+<script>	
 	export default {
 		data() {
 			return {
@@ -43,7 +44,7 @@
 				role_map: '',
 			};
 		},
-		onLoad() { 
+		onLoad() {
 			this.init()
 		},
 		onPullDownRefresh(){
@@ -60,9 +61,10 @@
 				this.role_list=this.$api.json.role_list
 				this.role_map = this.$api.json.role_map
 			},
-			jump_password_change(id) {
+			jump_password_change(item) {
+				console.log(item.id)
 				uni.navigateTo({
-					url: './password_change/password_change?id='+id
+					url: './password_change/password_change?id='+item.id+'&username='+item.username
 				});
 			},
 			jump_user_append() {
@@ -142,7 +144,6 @@
 			background: #FFFFFF;
 			padding: 0 10px 0px;
 			position: fixed;
-			// bottom: 100rpx;
 			bottom: 0;
 			width: 100%;
 			z-index: 9999;
