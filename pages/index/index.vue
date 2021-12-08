@@ -36,25 +36,31 @@
 		<view class="six">
 			<view class="jiu_01 ">
 				<navigator url="/pages/user/user">
-					<view><img src="../../imgs/people.png" /></view>
+					<view><img src="../../imgs/user.png" /></view>
 					<view>用户管理</view>
 				</navigator>
 			</view> 
 			<view class="jiu_01">
 				<navigator url="/pages/edit/pro_manage/pro_manage">
-					<view><img src="../../imgs/6.png" /></view>
+					<view><img src="../../imgs/product.png" /></view>
 					<view>商品管理</view>
 				</navigator>
 			</view>
 			<view class="jiu_01">
 				<navigator url="/pages/order/order">
-					<view><img src="../../imgs/8.png" /></view>
+					<view><img src="../../imgs/order.png" /></view>
 					<view>订单管理</view>
 				</navigator>
 			</view>
 			<view class="jiu_01">
+				<navigator url="/pages/order/order">
+					<view><img src="../../imgs/buyer.png" /></view>
+					<view>采购管理</view>
+				</navigator>
+			</view>
+			<view class="jiu_01">
 				<navigator url="/pages/user/tongji/tongji"> 
-					<view><img src="../../imgs/date.png" /></view>
+					<view><img src="../../imgs/treasure.png" /></view>
 					<view>财务分析</view>
 				</navigator>
 			</view>

@@ -8,7 +8,7 @@
 		</view>
 		<view class="cu-form-group">
 			<view class="title">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</view>
-			<input password="true" placeholder="请输入密码 (8-16位)"  v-model="user_form.password" maxlength="16" @focus="Listeningfocus"></input>
+			<input password="true" placeholder="包含数字和字母,长度在6～18位之间"  v-model="user_form.password" maxlength="16" @focus="Listeningfocus"></input>
 		</view>
 		<!-- <view class="cu-form-group">
 			<view class="title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</view>

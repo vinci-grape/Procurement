@@ -1,7 +1,7 @@
 <template>
 	<view class="user_list">
 		<view class="search">
-			<uni-easyinput suffixIcon="search" v-model="username" placeholder="请输入内容" @iconClick="search" color="#A5A5A5"></uni-easyinput>
+			<uni-easyinput suffixIcon="search" v-model="request.keyword" placeholder="请输入内容" @iconClick="search" color="#A5A5A5"></uni-easyinput>
 		</view>
 		<scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
 			<view class='tab'>
@@ -34,10 +34,10 @@
 		data() {
 			return {
 				request: {
+					keyword: '',
 					page: '0',
-					size: '1000000'
+					size: '1000000',
 				},
-				username: '',
 				c_index: 0,
 				user_list: '',
 				role_list: '',
@@ -62,7 +62,6 @@
 				this.role_map = this.$api.json.role_map
 			},
 			jump_password_change(item) {
-				console.log(item.id)
 				uni.navigateTo({
 					url: './password_change/password_change?id='+item.id+'&username='+item.username
 				});
@@ -76,9 +75,8 @@
 				this.c_index = index
 			},
 			search() {
-				this.$api.http.get('/user/findByUsername?username=' + this.username, this.username).then(res => {
-					this.user_list = []
-					this.user_list.push(res)
+				this.$api.http.get('/user/search', this.request).then(res => {
+					this.user_list = res.content
 				})
 			}
 		}
